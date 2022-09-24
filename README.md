@@ -1,10 +1,7 @@
 Building a restful api uing reactPHP
-
-/* 
-  * Mise en place d'un serveur en fonctionnement
-  qui traitera les demandes entrantes.
-  Serveur HTTP vide.
-  * configuration des routes avec l'utilisation
-  de FastRoute 
-
-*/
+ 
+  * Set up a working server 
+    that will handle incoming requests.
+  * Route configuration 
+    with FastRoute 
+  * Refactoring to controllers
