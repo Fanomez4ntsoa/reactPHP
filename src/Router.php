@@ -3,6 +3,7 @@
 namespace App;
 
 use Exception;
+use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
 use React\Http\Message\Response;
 use FastRoute\Dispatcher\GroupCountBased;
@@ -22,14 +23,16 @@ class Router
     $routeInfo = $this->dispatcher->dispatch($request->getMethod(), $request->getUri()->getPath());
   
     switch ($routeInfo[0]) {
-      case \FastRoute\Dispatcher::NOT_FOUND;
+      case Dispatcher::NOT_FOUND;
         return new Response(404, ['Content-type' => 'text/plain'], "Not Found");
-      case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED;
+      case Dispatcher::METHOD_NOT_ALLOWED;
         return new Response(405, ['Content-type' => 'text/plain'], 'Method not allowed');
-      case \FastRoute\Dispatcher::FOUND;
-        return $routeInfo[1]($request);
+      case Dispatcher::FOUND;
+        $params = array_values($routeInfo[2]);
+        return $routeInfo[1]($request,... $params);
       }
       throw new Exception("Something went wrong with routing");
     }
-}
+} 
 
+ 
