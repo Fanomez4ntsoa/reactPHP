@@ -1,13 +1,13 @@
 <?php
-namespace App\Products\Controller;
+namespace App\Orders\Controller;
 
 use App\Core\JsonResponse;
 use Psr\Http\Message\ServerRequestInterface;
 
-class UpdateProduct
+class GetOrderById
 {
   public function __invoke(ServerRequestInterface $request, string $id)
   {
-    return JsonResponse::done(['message' => "PUT request to /products/{$id}"]);
+    return JsonResponse::done(['message' => "GET request to /orders/{$id}"]);
   }
 }
