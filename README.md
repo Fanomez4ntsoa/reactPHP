@@ -6,3 +6,5 @@ Building a restful api uing reactPHP
     with FastRoute 
   * Refactoring to controllers
   * Parsing request body
+  * Installation of the package doctrine/migrations
+    ** 
