@@ -3,8 +3,9 @@ require('vendor/autoload.php');
 
 use App\Core\Router;
 use React\Http\Server;
+use React\MySQL\Factory;
 use App\Core\ErrorHandler;
-use React\EventLoop\Factory;
+use React\MySQL\QueryResult;
 use FastRoute\RouteCollector;
 use FastRoute\RouteParser\Std;
 use App\Core\JsonRequestDecode;
@@ -19,7 +20,18 @@ use App\Products\Controller\GetProductById;
 use FastRoute\DataGenerator\GroupCountBased;
 use App\Products\Controller\DeleteProductById;
 
+$env = \Dotenv\Dotenv::createImmutable(__DIR__);
+$env->load();
+
 $loop = \React\EventLoop\Factory::create();
+$mysql = new \React\MySQL\Factory($loop);
+$uri = getenv('DB_LOGIN') . ':' . getenv('DB_PASS') . '@' . getenv('DB_HOST') . '/' . getenv('DB_NAME');
+$connection = $mysql->createLazyConnection($uri);
+
+$connection->query('SHOW TABLES')
+    ->then(function(QueryResult $result) {
+      print_r($result->resultRows);
+    });
 
 // Routes for products
 $routes = new RouteCollector(new Std(), new GroupCountBased());

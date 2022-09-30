@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220930161355 extends AbstractMigration
+final class Version20220930184843 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -19,12 +19,14 @@ final class Version20220930161355 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
+
       $sql = <<<SQL
-      CREATE TABLE products (
+      CREATE TABLE orders (
         id INT UNSIGNED AUTO_INCREMENT NOT NULL,
-        name VARCHAR (255) NOT NULL,
-        price DECIMAL (10,2) NOT NULL,
-        PRIMARY KEY (id)
+        product_id INT UNSIGNED NOT NULL,
+        quantity INT UNSIGNED NOT NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY (product_id) REFERENCES products (id)
       )
       SQL;
       $this->addSql($sql);
@@ -32,6 +34,6 @@ final class Version20220930161355 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-      $this->addSql('DROP TABLE products');
+      $this->addSql('DROP TABLE orders');
     }
 }
