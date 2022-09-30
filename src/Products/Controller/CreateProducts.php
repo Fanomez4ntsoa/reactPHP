@@ -8,6 +8,13 @@ class CreateProducts
 {
   public function __invoke(ServerRequestInterface $request)
   {
-    return JsonResponse::done(['message' => 'POST request to /products']);
+    $product = [
+      'name' => $request->getParsedBody()['name'],
+      'price' => $request->getParsedBody()['price']
+    ];
+    return JsonResponse::done([
+      'message' => 'POST request to /products',
+      'product' => $product,
+    ]);
   }
 }

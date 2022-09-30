@@ -5,3 +5,4 @@ Building a restful api uing reactPHP
   * Route configuration 
     with FastRoute 
   * Refactoring to controllers
+  * Parsing request body

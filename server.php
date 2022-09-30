@@ -5,6 +5,7 @@ use App\Core\Router;
 use React\Http\Server;
 use React\MySQL\Factory;
 use App\Core\ErrorHandler;
+use App\Core\JsonRequestDecode;
 use FastRoute\RouteCollector;
 use FastRoute\RouteParser\Std;
 use App\Orders\Controller\CreateOrder;
@@ -23,18 +24,18 @@ $loop = \React\EventLoop\Factory::create();
 // Routes for products
 $routes = new RouteCollector(new Std(), new GroupCountBased());
 $routes->get('/products', new GetAllProducts());
-$routes->post('/products', new CreateProducts());
+$routes->post('/products/create', new CreateProducts());
 $routes->get('/products/{id:\d+}', new GetProductById());
 $routes->put('/products/{id:\d+}', new UpdateProduct());
 $routes->delete('/products/{id:\d+}', new DeleteProductById());
 
 // Routes for Orders
 $routes->get('/orders', new GetAllOrders());
-$routes->post('/orders', new CreateOrder());
+$routes->post('/orders/create', new CreateOrder());
 $routes->get('/orders/{id:\d+}', new GetOrderById());
 $routes->delete('/orders/{id:\d+}', new DeleteOrderById());
 
-$server = new Server(new ErrorHandler([]), new Router($routes));
+$server = new Server(new ErrorHandler(), new JsonRequestDecode(), new Router($routes));
 
 $socket = new \React\Socket\Server('127.0.0.1:8080', $loop);
 $server->listen($socket);
