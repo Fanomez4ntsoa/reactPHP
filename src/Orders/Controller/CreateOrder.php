@@ -6,6 +6,10 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class CreateOrder
 {
+  /**
+   * @param ServerRequestInterface $request
+   * @return void
+   */
   public function __invoke(ServerRequestInterface $request)
   {
     $order = [

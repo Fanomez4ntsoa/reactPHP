@@ -7,6 +7,11 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class ErrorHandler
 {
+  /**
+   * @param ServerRequestInterface $request
+   * @param callable $next
+   * @return void
+   */
   public function __invoke(ServerRequestInterface $request, callable $next)
   {
     try {

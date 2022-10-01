@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220930161355 extends AbstractMigration
+final class Version20220930204210 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -22,7 +22,7 @@ final class Version20220930161355 extends AbstractMigration
       $sql = <<<SQL
       CREATE TABLE products (
         id INT UNSIGNED AUTO_INCREMENT NOT NULL,
-        name VARCHAR (255) NOT NULL,
+        nom VARCHAR (255) NOT NULL,
         price DECIMAL (10,2) NOT NULL,
         PRIMARY KEY (id)
       )

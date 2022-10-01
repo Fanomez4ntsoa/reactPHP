@@ -6,6 +6,11 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class UpdateProduct
 {
+  /**
+   * @param ServerRequestInterface $request
+   * @param string $id
+   * @return void
+   */
   public function __invoke(ServerRequestInterface $request, string $id)
   {
     return JsonResponse::done(['message' => "PUT request to /products/{$id}"]);

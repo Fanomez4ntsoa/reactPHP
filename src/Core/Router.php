@@ -13,11 +13,18 @@ class Router
 {
   private $dispatcher;
 
+  /**
+   * @param RouteCollector $routes
+   */
   public function __construct(RouteCollector $routes)
   {
     $this->dispatcher = new GroupCountBased($routes->getData());
   }
 
+  /**
+   * @param ServerRequestInterface $request
+   * @return void
+   */
   public function __invoke(ServerRequestInterface $request)
   {
     $routeInfo = $this->dispatcher->dispatch(
